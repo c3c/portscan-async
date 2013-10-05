@@ -5,7 +5,7 @@ This package offers a portscan utility to determine if a host is reachable on a 
 
 #### Scenario
 
-A status pages has to report if certain hosts are online. 
+A status page has to report if certain hosts are online. 
 Using the normal methods, each host will be checked sequentially, which is slow.
 Thanks to this class, all of the checks are performed asynchronously, and the status of all hosts can be checked in a non-blocking way.
 
