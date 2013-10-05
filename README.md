@@ -13,6 +13,8 @@ Thanks to this class, all of the checks are performed asynchronously, and the st
 
   * `setTimeout($float)` : timeout for all checks to terminate
   * `addTest($host, $port)` : add a host to test
+  * `scan()` : start scan
+  * `results` : variable that holds the results
 
 ## Example
 
@@ -28,14 +30,14 @@ $ss->scan();
 var_dump($ss->results);
 ```
 
-##### Result:
+##### Result
 
 ```
 array(3) {
   ["google.com"]=>
   array(1) {
-    [80]=>
-    int(0)
+    [80]=>     ## Holds the port
+    int(0)     ## Holds the error number (0 = port open)
   }
   ["yahoo.com"]=>
   array(1) {
@@ -50,6 +52,13 @@ array(3) {
 }
 ```
 
+For an overview of error numbers, look [here](http://www.php.net/manual/en/sockets.constants.php#108291).
+
 ------------
-Keywords: 
+
+###### Future
+  * callbacks per test/globally
+  * UDP scan (although I'm not sure how to do this reliably)
+
+###### Keywords 
  multi threaded port scan status check checker scanner open closed non-blocking
