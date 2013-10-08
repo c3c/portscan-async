@@ -13,7 +13,7 @@ class Scanner {
 	}
 
 	public function addTest($host, $port) {
-		$this->tests[] = [$host, $port];
+		$this->tests[] = array($host, $port);
 	}
 
 	// you can use a float
@@ -22,13 +22,14 @@ class Scanner {
 	}
 
 	private function createSockets() {
-		foreach ($this->tests as list($host, $port)) {
+		foreach ($this->tests as $test) {
+			list($host, $port) = $test;
 			$sock = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
 			socket_set_nonblock($sock);
 			@socket_connect($sock, $host, $port);
 
 			$this->socks[] = $sock;
-			$this->lookup[$sock] = [$host, $port];
+			$this->lookup[$sock] = array($host, $port);
 		}
 	}
 
@@ -42,7 +43,7 @@ class Scanner {
 		}
 	}
 
-	public function scan($cb) {
+	public function scan($cb = null) {
 		$this->createSockets();
 
 		$poll = microtime(true);
